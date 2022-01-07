@@ -11,8 +11,8 @@ html {
 
 body {
   font-family: Montserrat, sans-serif;
-  background: #FDF9F8;
-  color: #111;
+  background: linear-gradient(to right bottom, #444444, #1a1d22);
+  color: #fff;
   text-align: center;
 }
 
@@ -45,8 +45,12 @@ body {
   transition: outline 1s linear;
 }
 
+.todo-form input[placeholder] {
+  font-family: Montserrat, sans-serif;
+}
+
 .todo-form input:focus {
-  outline: 1px solid #222;
+  outline: 1px solid #fff;
 }
 
 button {
