@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import * as Md from 'react-icons/md';
-import TodoFrom from './TodoFrom.component';
+import TodoForm from './TodoForm.component';
 
 const Todo = ({ showTodos, toggleComplete, editTodo, deleteTodo }) => {
   const [edit, setEdit] = useState({ id: null, value: '' });
@@ -14,31 +14,25 @@ const Todo = ({ showTodos, toggleComplete, editTodo, deleteTodo }) => {
   };
 
   if (edit.id) {
-    return <TodoFrom edit={edit} onSubmit={submitUpdate} />;
+    return <TodoForm edit={edit} onSubmit={submitUpdate} />;
   }
 
   return (
-    <div>
+    <div className='container todo'>
       {showTodos.map((todo) => (
-        <div
-          key={todo.id}
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            margin: '20px auto',
-          }}
-        >
+        <div key={todo.id} className='todo-items'>
           <div
             style={{
-              color: !todo.complete ? 'red' : 'green',
-              cursor: 'pointer',
+              color: !todo.complete ? '#fff' : '#999',
+              textDecoration: !todo.complete ? '' : 'line-through',
             }}
+            className='todo'
             onClick={() => toggleComplete(todo.id)}
           >
             <p>{todo.text}</p>
           </div>
 
-          <div>
+          <div className='button'>
             <button onClick={() => setEdit({ id: todo.id, value: todo.text })}>
               <Md.MdEdit />
             </button>

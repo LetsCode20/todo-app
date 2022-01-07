@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as Md from 'react-icons/md';
 import Todo from './Todo.component';
-import TodoFrom from './TodoFrom.component';
+import TodoForm from './TodoForm.component';
 
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
@@ -64,17 +64,14 @@ const TodoList = () => {
   };
 
   return (
-    <div>
-      <TodoFrom onSubmit={addTodo} />
+    <div className='container'>
+      <TodoForm onSubmit={addTodo} />
 
       <Todo
         showTodos={showTodos}
-        // key={todo.id}
         toggleComplete={toggleComplete}
         editTodo={editTodo}
         deleteTodo={deleteTodo}
-        // text={todo.text}
-        // complete={todo.complete}
       />
 
       <div>Todos left: {todos.filter((todo) => !todo.complete).length}</div>

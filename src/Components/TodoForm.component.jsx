@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import shortid from 'shortid';
 
-const TodoFrom = (props) => {
+const TodoForm = (props) => {
   const [text, setText] = useState(props.edit ? props.edit.value : '');
 
   const inputRef = useRef(null);
@@ -31,7 +31,7 @@ const TodoFrom = (props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='todo-form' onSubmit={handleSubmit}>
       {props.edit ? (
         <>
           <input
@@ -42,7 +42,7 @@ const TodoFrom = (props) => {
             onChange={handleChange}
             ref={inputRef}
           />
-          <button onClick={handleSubmit}>Update Your Task</button>
+          <button onClick={handleSubmit}>Update</button>
         </>
       ) : (
         <>
@@ -61,4 +61,4 @@ const TodoFrom = (props) => {
   );
 };
 
-export default TodoFrom;
+export default TodoForm;
