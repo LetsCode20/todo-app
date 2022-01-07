@@ -2,9 +2,9 @@
 
 Todo List Website is written in React.js
 
-If you want To visite the Website: [Background Generator](https://yassinecode-background-generator.netlify.app/)
+If you want To visite the Website: [Todo App](https://yassinecode-todo-app.netlify.app/)
 
-![Website Preview](./src/assets/images/preview.png)
+![Todo App Preview](./src/assets/images/preview.png)
 
 - Create your tasks.
 - Feel Free to edit & remove your tasks anytime you want.
