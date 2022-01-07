@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import shortid from 'shortid';
-// import * as Md from 'react-icons/md';
 
 const TodoFrom = (props) => {
-  const [text, setText] = useState('');
+  const [text, setText] = useState(props.edit ? props.edit.value : '');
+
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  });
 
   const handleChange = (e) => {
     setText(e.target.value);
@@ -11,6 +16,10 @@ const TodoFrom = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!text.length) {
+      return;
+    }
 
     props.onSubmit({
       id: shortid.generate(),
@@ -23,8 +32,31 @@ const TodoFrom = (props) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type='text' value={text} onChange={handleChange} />
-      <button onClick={handleSubmit}>Add Todo</button>
+      {props.edit ? (
+        <>
+          <input
+            type='text'
+            name='text'
+            placeholder='Update Your Task'
+            value={text}
+            onChange={handleChange}
+            ref={inputRef}
+          />
+          <button onClick={handleSubmit}>Update Your Task</button>
+        </>
+      ) : (
+        <>
+          <input
+            type='text'
+            name='text'
+            placeholder='Add Your Tasks'
+            value={text}
+            onChange={handleChange}
+            ref={inputRef}
+          />
+          <button onClick={handleSubmit}>Add Todo</button>
+        </>
+      )}
     </form>
   );
 };

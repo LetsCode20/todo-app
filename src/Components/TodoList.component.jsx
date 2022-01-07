@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import * as Md from 'react-icons/md';
 import Todo from './Todo.component';
 import TodoFrom from './TodoFrom.component';
 
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
   const [todosToShow, setTodosToShow] = useState('all');
+  const [toggleAllComplete, setToggleAllComplete] = useState(true);
 
   let showTodos = [];
 
@@ -30,17 +32,50 @@ const TodoList = () => {
     );
   };
 
+  const editTodo = (todoId, newTodo) => {
+    if (!newTodo.text) {
+      return;
+    }
+
+    setTodos((prev) =>
+      prev.map((todo) => (todo.id === todoId ? newTodo : todo))
+    );
+  };
+
+  const deleteTodo = (id) => {
+    const removeTodo = [...todos].filter((todo) => todo.id !== id);
+
+    setTodos(removeTodo);
+  };
+
+  const deleteCompleteTodo = () => {
+    const removeCompleteTodo = [...todos].filter((todo) => !todo.complete);
+
+    setTodos(removeCompleteTodo);
+  };
+
+  const toggleAllTodosToComplete = () => {
+    const toggleAllCompleteArr = todos.map((todo) => {
+      return { ...todo, complete: toggleAllComplete };
+    });
+
+    setTodos(toggleAllCompleteArr);
+    setToggleAllComplete(!toggleAllComplete);
+  };
+
   return (
     <div>
       <TodoFrom onSubmit={addTodo} />
-      {showTodos.map((todo) => (
-        <Todo
-          key={todo.id}
-          toggleComplete={() => toggleComplete(todo.id)}
-          text={todo.text}
-          complete={todo.complete}
-        />
-      ))}
+
+      <Todo
+        showTodos={showTodos}
+        // key={todo.id}
+        toggleComplete={toggleComplete}
+        editTodo={editTodo}
+        deleteTodo={deleteTodo}
+        // text={todo.text}
+        // complete={todo.complete}
+      />
 
       <div>Todos left: {todos.filter((todo) => !todo.complete).length}</div>
 
@@ -48,6 +83,20 @@ const TodoList = () => {
         <button onClick={() => setTodosToShow('all')}>All</button>
         <button onClick={() => setTodosToShow('active')}>Active</button>
         <button onClick={() => setTodosToShow('complete')}>Complete</button>
+      </div>
+
+      <div>
+        <button onClick={toggleAllTodosToComplete}>
+          Toggle All Complete: {`${toggleAllComplete}`}
+        </button>
+      </div>
+
+      <div>
+        {todos.some((todo) => todo.complete) && (
+          <button onClick={deleteCompleteTodo}>
+            Remove All Complete Todo <Md.MdDeleteForever />
+          </button>
+        )}
       </div>
     </div>
   );
