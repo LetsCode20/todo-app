@@ -2,7 +2,7 @@
 
 Todo List Website is written in React.js
 
-If you want To visite the Website: <a href="https://yassinecode-todo-app.netlify.app/" target="_blank">Todo App</a>
+If you want To visite the Website: <a href="https://yassinetodoapp.netlify.app/" target="_blank">Todo App</a>
 
 ![Todo App Preview](./assets/images/preview.png)
 
@@ -11,3 +11,5 @@ If you want To visite the Website: <a href="https://yassinecode-todo-app.netlify
 - When you finish your task just on it.
 - Filter Todos by all / active / complete.
 - You can also make all todos completed with one click.
+- Hope you like it.
+- Follow me on instagram: <a href='https://www.instagram.com/yassinecode/' alt='yassinecode'>@yassinecode</a>
